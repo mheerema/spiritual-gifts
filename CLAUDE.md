@@ -8,7 +8,8 @@ Designed to work independently or with a tight API integration into Trellis.
 - **Framework**: Next.js 15 (App Router, TypeScript)
 - **Database**: Neon (Postgres)
 - **Styling**: Tailwind CSS
-- **Hosting**: Vercel
+- **Hosting**: Vercel (mheerema's personal account)
+- **Production URL**: https://spiritual-gifts-eight.vercel.app
 - **Repo**: github.com/mheerema/spiritual-gifts
 
 ## Theological Framework
