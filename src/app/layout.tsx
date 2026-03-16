@@ -8,7 +8,7 @@ const geistSans = Geist({
 });
 
 export const metadata: Metadata = {
-  title: "Spiritual Gifts Assessment",
+  title: "Charismata — Spiritual Gifts Assessment",
   description: "Discover how God has equipped you for service in His church",
 };
 

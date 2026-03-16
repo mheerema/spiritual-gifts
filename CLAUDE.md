@@ -9,7 +9,7 @@ Designed to work independently or with a tight API integration into Trellis.
 - **Database**: Neon (Postgres)
 - **Styling**: Tailwind CSS
 - **Hosting**: Vercel (mheerema's personal account)
-- **Production URL**: https://spiritual-gifts-eight.vercel.app
+- **Production URL**: https://charismata.org
 - **Repo**: github.com/mheerema/spiritual-gifts
 
 ## Theological Framework
