@@ -48,6 +48,12 @@ export function SiteNav() {
           >
             Resources
           </Link>
+          <a
+            href="mailto:matt@mattheerema.com?subject=Charismata%20Feedback"
+            className="text-sm text-stone-500 hover:text-stone-700 transition-colors"
+          >
+            Feedback
+          </a>
         </div>
       </div>
     </nav>
