@@ -9,7 +9,7 @@ interface SessionQuestion {
 /**
  * POST /api/sessions/start
  * Start an anonymous assessment session.
- * Selects 12 random active questions from each active category,
+ * Selects 10 random active questions from each active category,
  * shuffles them globally, and creates the session + session_questions.
  */
 export async function POST(request: Request) {
@@ -18,7 +18,7 @@ export async function POST(request: Request) {
     const { participant_name, participant_email, church_name, group_name } =
       body;
 
-    // Select 12 random active questions per active category
+    // Select 10 random active questions per active category
     const questionsResult = await query<SessionQuestion>(
       `SELECT q.id AS question_id, q.category_id
        FROM sg_questions q
@@ -27,7 +27,7 @@ export async function POST(request: Request) {
        ORDER BY q.category_id, random()`
     );
 
-    // Group by category and take 12 per category
+    // Group by category and take 10 per category
     const byCategory = new Map<string, SessionQuestion[]>();
     for (const row of questionsResult.rows) {
       const list = byCategory.get(row.category_id) || [];
@@ -37,7 +37,7 @@ export async function POST(request: Request) {
 
     const selected: SessionQuestion[] = [];
     for (const questions of byCategory.values()) {
-      selected.push(...questions.slice(0, 12));
+      selected.push(...questions.slice(0, 10));
     }
 
     if (selected.length === 0) {

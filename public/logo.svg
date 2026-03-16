@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="flame" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#78716c"/>
+      <stop offset="100%" stop-color="#292524"/>
+    </linearGradient>
+  </defs>
+  <!-- Eight rays radiating from center — the 8 gift categories -->
+  <!-- Each ray is a tapered path suggesting both flame tongues and a Chi (Χ) form -->
+  <g transform="translate(256,256)">
+    <!-- Primary Chi arms (bold) -->
+    <!-- Upper-right -->
+    <path d="M 20,-20 Q 60,-80 40,-180 L 56,-178 Q 80,-78 28,-14 Z" fill="url(#flame)"/>
+    <!-- Lower-left -->
+    <path d="M -20,20 Q -60,80 -40,180 L -56,178 Q -80,78 -28,14 Z" fill="url(#flame)"/>
+    <!-- Upper-left -->
+    <path d="M -20,-20 Q -60,-80 -40,-180 L -56,-178 Q -80,-78 -28,-14 Z" fill="url(#flame)"/>
+    <!-- Lower-right -->
+    <path d="M 20,20 Q 60,80 40,180 L 56,178 Q 80,78 28,14 Z" fill="url(#flame)"/>
+
+    <!-- Secondary cross arms (thinner, rotated 45°) -->
+    <!-- Top -->
+    <path d="M -6,-24 Q -4,-90 0,-185 Q 4,-90 6,-24 Z" fill="#a8a29e" opacity="0.7"/>
+    <!-- Bottom -->
+    <path d="M -6,24 Q -4,90 0,185 Q 4,90 6,24 Z" fill="#a8a29e" opacity="0.7"/>
+    <!-- Left -->
+    <path d="M -24,-6 Q -90,-4 -185,0 Q -90,4 -24,6 Z" fill="#a8a29e" opacity="0.7"/>
+    <!-- Right -->
+    <path d="M 24,-6 Q 90,-4 185,0 Q 90,4 24,6 Z" fill="#a8a29e" opacity="0.7"/>
+
+    <!-- Center dot -->
+    <circle r="14" fill="#292524"/>
+    <circle r="8" fill="#fafaf9"/>
+  </g>
+</svg>

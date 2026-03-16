@@ -33,7 +33,7 @@ export async function POST(request: Request) {
       );
     }
 
-    // Select 12 random active questions per active category
+    // Select 10 random active questions per active category
     const questionsResult = await query<SessionQuestion>(
       `SELECT q.id AS question_id, q.category_id
        FROM sg_questions q
@@ -42,7 +42,7 @@ export async function POST(request: Request) {
        ORDER BY q.category_id, random()`
     );
 
-    // Group by category and take 12 per category
+    // Group by category and take 10 per category
     const byCategory = new Map<string, SessionQuestion[]>();
     for (const row of questionsResult.rows) {
       const list = byCategory.get(row.category_id) || [];
@@ -52,7 +52,7 @@ export async function POST(request: Request) {
 
     const selected: SessionQuestion[] = [];
     for (const questions of byCategory.values()) {
-      selected.push(...questions.slice(0, 12));
+      selected.push(...questions.slice(0, 10));
     }
 
     if (selected.length === 0) {

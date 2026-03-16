@@ -48,7 +48,7 @@ export default function Home() {
         {/* Instructions */}
         <div className="bg-white rounded-2xl border border-stone-200 p-6 space-y-4">
           <p className="text-sm text-stone-600 leading-relaxed">
-            This assessment contains <strong>96 statements</strong> about behaviors, tendencies, and
+            This assessment contains <strong>100 statements</strong> about behaviors, tendencies, and
             preferences. For each one, indicate how strongly you agree or disagree based on{" "}
             <em>what is typically true of you</em> — not what you wish were true or think should be true.
           </p>

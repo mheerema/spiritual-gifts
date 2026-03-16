@@ -131,11 +131,18 @@ const CONTINUING_GIFTS: GlossaryEntry[] = [
       "The gift of seeing practical needs and meeting them with joy and reliability. Diakonia is Paul\u2019s broadest term for ministry \u2014 it covers everything from table-serving (its literal origin) to the full scope of ministry (2 Cor. 4:1; Eph. 4:12). The more specific antil\u0113mpsis in 1 Corinthians 12:28, translated \u201chelps\u201d or \u201chelpful deeds,\u201d denotes hands-on assistance. The TDNT (vol. 2, 81\u201382) notes that diakonia in the early church was never considered menial: it was patterned after Christ\u2019s own self-description as one who \u201ccame not to be served but to serve\u201d (Mark 10:45). Those with this gift are often the reason ministry actually functions.",
   },
   {
-    term: "Administration / Leadership",
-    greek: "kubern\u0113sis (\u03ba\u03c5\u03b2\u03ad\u03c1\u03bd\u03b7\u03c3\u03b9\u03c2) / proistamenos (\u03c0\u03c1\u03bf\u03ca\u03c3\u03c4\u03ac\u03bc\u03b5\u03bd\u03bf\u03c2)",
-    refs: "1 Cor. 12:28; Rom. 12:8; 1 Thess. 5:12; 1 Tim. 5:17",
+    term: "Leadership",
+    greek: "proistamenos (προϊστάμενος)",
+    refs: "Rom. 12:8; 1 Thess. 5:12; 1 Tim. 5:17; Heb. 13:7, 17",
     definition:
-      "Two related gifts. Kubern\u0113sis (1 Cor. 12:28) refers to the steering of a ship \u2014 the person at the helm who coordinates the crew and navigates the course. The NIDNTT (vol. 1, 197) connects it to strategic direction and organization. Proistamenos (Rom. 12:8) carries the sense of \u201cstanding before\u201d or \u201cpresiding over,\u201d with an emphasis on diligence and care. Both terms point to the Spirit-empowered ability to bring order, clarity, and execution to the work of the church. This is not mere bureaucracy \u2014 it is the organizational wisdom that enables the body to function as a coordinated whole.",
+      "The gift of setting direction and moving people toward it. Proistamenos (Rom. 12:8) carries the sense of \u201cstanding before\u201d or \u201cpresiding over,\u201d with Paul specifying it should be exercised \u201cwith diligence\u201d (en spoudē). The emphasis is not on organizational management but on initiative, vision within a domain, and the courage to go first. Hebrews 13:7 describes leaders as those whose \u201cway of life\u201d is worth imitating \u2014 leadership in the New Testament is demonstrated by character and direction, not by title. As Schreiner notes (Spiritual Gifts, 142), \u201cLeadership in Paul is not bureaucratic authority but the Spirit-given capacity to see what must be done and to rally others toward it.\u201d This gift is distinct from administration: the leader points the way, while the administrator builds the road.",
+  },
+  {
+    term: "Administration",
+    greek: "kubernēsis (κυβέρνησις)",
+    refs: "1 Cor. 12:28",
+    definition:
+      "The gift of coordinating people and resources to accomplish a shared goal. Kubernēsis literally means \u201csteering\u201d or \u201cpiloting\u201d \u2014 the helmsman who keeps the ship on course once the captain has set the heading. The NIDNTT (vol. 1, 197) connects it to strategic organization and execution. This is not mere bureaucracy but the Spirit-empowered ability to bring order to complexity, build systems that serve people, and ensure that vision actually becomes reality. Administration is a support and execution gift: once the direction is set (by leadership), the administrator ensures it is carried out efficiently and faithfully. Those with this gift multiply the effectiveness of everyone around them.",
   },
   {
     term: "Evangelism",

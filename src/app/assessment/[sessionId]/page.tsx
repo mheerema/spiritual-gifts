@@ -184,7 +184,7 @@ export default function AssessmentPage() {
         <div className="bg-white rounded-2xl border border-stone-200 p-6">
           <div className="space-y-3">
             {scores.map((score) => {
-              const maxScore = 60;
+              const maxScore = 50;
               const widthPct = Math.round((score.raw_score / maxScore) * 100);
               const isTop2 = score.rank <= 2;
               const isBottom2 = score.rank >= scores.length - 1;
@@ -229,8 +229,20 @@ export default function AssessmentPage() {
             Secondary Strengths
           </h2>
           <div className="grid gap-4">
-            {scores.slice(2, 4).map((score) => (
+            {scores.slice(2, 5).map((score) => (
               <GiftCard key={score.category_id} score={score} />
+            ))}
+          </div>
+        </div>
+
+        {/* Middle */}
+        <div>
+          <h2 className="text-xs font-semibold text-stone-500 uppercase tracking-wider mb-3">
+            Middle Range
+          </h2>
+          <div className="grid gap-4">
+            {scores.slice(5, -2).map((score) => (
+              <GiftCard key={score.category_id} score={score} startCollapsed />
             ))}
           </div>
         </div>

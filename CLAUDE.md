@@ -24,28 +24,31 @@ insight and conversation starters.
 
 ## Assessment Structure
 
-- **8 categories** (hidden from test-takers during the assessment):
+- **10 categories** (hidden from test-takers during the assessment):
   1. Word & Wisdom — teaching, study, biblical explanation
   2. Shepherding & Care — pastoral care, long-term relational investment
-  3. Service & Administration — logistics, organization, execution
-  4. Evangelistic & Missional — outreach, bridge-building, gospel conversations
-  5. Prophetic & Discernment — truth-telling, integrity, doctrinal evaluation
-  6. Faith & Intercession — persistent prayer, trust in God's provision
-  7. Stewardship & Generosity — giving, hospitality, resource deployment
-  8. Creative & Communication — arts, writing, worship, expression
+  3. Service & Helps — hands-on practical action, reliability, meeting tangible needs
+  4. Leadership — setting direction, vision, initiative, rallying people
+  5. Administration — organizing people/resources, building systems, coordinating execution
+  6. Evangelistic & Missional — outreach, bridge-building, gospel conversations
+  7. Prophetic & Discernment — truth-telling, integrity, doctrinal evaluation
+  8. Faith & Intercession — persistent prayer, trust in God's provision
+  9. Stewardship & Generosity — giving, hospitality, resource deployment
+  10. Creative & Communication — arts, writing, worship, expression
 
-- **192 questions** in the master bank (24 per category)
-- **96 questions per run** (12 randomly selected from each category)
+- **200 questions** in the master bank (20 per category)
+- **100 questions per run** (10 randomly selected from each category)
 - **5-point Likert scale**: Strongly Disagree → Strongly Agree
 - Questions are "veiled behavioral" — describe tendencies without naming the gift
 
 ## Scoring
 
-- Raw score per category: sum of 12 responses (range 12–60)
-- Average score per category: raw / 12
-- Rank all 8 categories highest to lowest
+- Raw score per category: sum of 10 responses (range 10–50)
+- Average score per category: raw / 10
+- Rank all 10 categories highest to lowest
 - **Primary strengths**: top 2
-- **Secondary strengths**: next 2
+- **Secondary strengths**: next 3
+- **Middle range**: next 3
 - **Lower-energy areas**: bottom 2
 - Ties: preserve tied scores, secondary sort by display order
 
@@ -97,7 +100,7 @@ The app also works without Trellis:
 ### Assessment Flow
 1. Landing page — purpose, instructions, scale explanation, disclaimer
 2. Questionnaire — paginated (12 per page), progress bar, auto-save
-3. Submit — validates all 96 answered
+3. Submit — validates all 100 answered
 4. Results — bar chart, gift detail cards, next-step guidance
 
 ### UX Requirements
@@ -165,8 +168,8 @@ Bar chart preferred over radar/spider for readability.
 
 ## Content Assets Ready
 
-- 192 veiled behavioral questions (in seed script)
-- 8 category descriptions with strengths, cautions, ministry fit
+- 200 veiled behavioral questions (in seed script)
+- 10 category descriptions with strengths, cautions, ministry fit
 - Instructional copy and disclaimer language
 
 ## Edge Cases

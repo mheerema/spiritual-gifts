@@ -58,11 +58,11 @@ export default function PrivacyPolicy() {
               it
             </li>
             <li>
-              <strong>Assessment responses</strong> &mdash; your answers to 96 statements
+              <strong>Assessment responses</strong> &mdash; your answers to 100 statements
               on a 1&ndash;5 scale
             </li>
             <li>
-              <strong>Calculated scores</strong> &mdash; your results across 8 gift
+              <strong>Calculated scores</strong> &mdash; your results across 10 gift
               categories, derived from your responses
             </li>
           </ul>
