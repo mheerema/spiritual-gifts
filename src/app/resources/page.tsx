@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 
-type Tab = "glossary" | "sign-gifts" | "bibliography";
+type Tab = "glossary" | "sign-gifts" | "methodology" | "bibliography";
 
 interface GlossaryEntry {
   term: string;
@@ -312,7 +312,6 @@ const ALL_SECTIONS = [
   { title: "The Gift Lists & Church Structure", entries: GIFT_LISTS },
   { title: "Continuing Gifts", subtitle: "Gifts affirmed across cessationist and continuationist positions", entries: CONTINUING_GIFTS },
   { title: "Theological Positions", entries: THEOLOGICAL_FRAMEWORK },
-  { title: "Assessment Methodology", entries: ASSESSMENT_TERMS },
 ];
 
 const SIGN_SECTIONS = [
@@ -581,6 +580,16 @@ export default function ResourcesPage() {
           Sign Gifts
         </button>
         <button
+          onClick={() => setTab("methodology")}
+          className={`px-4 py-3 text-sm font-medium transition-colors border-b-2 -mb-px ${
+            tab === "methodology"
+              ? "border-stone-900 text-stone-900"
+              : "border-transparent text-stone-400 hover:text-stone-600"
+          }`}
+        >
+          Methodology
+        </button>
+        <button
           onClick={() => setTab("bibliography")}
           className={`px-4 py-3 text-sm font-medium transition-colors border-b-2 -mb-px ${
             tab === "bibliography"
@@ -659,6 +668,30 @@ export default function ResourcesPage() {
               </div>
             </div>
           ))}
+        </div>
+      )}
+
+      {/* Methodology Tab */}
+      {tab === "methodology" && (
+        <div className="space-y-10">
+          <div className="bg-stone-100/60 rounded-2xl border border-stone-200 p-5 space-y-3">
+            <p className="text-sm text-stone-600 leading-relaxed">
+              How Charismata measures spiritual gifts &mdash; the psychometric approach,
+              scoring model, and design decisions behind the assessment.
+            </p>
+          </div>
+
+          <div>
+            <h2 className="text-xs font-semibold text-stone-500 uppercase tracking-wider mb-1">
+              Assessment Design
+            </h2>
+            <div className="mb-3" />
+            <div className="bg-white rounded-2xl border border-stone-200 px-5">
+              {ASSESSMENT_TERMS.map((entry, eIdx) =>
+                renderEntry(entry, 200, eIdx)
+              )}
+            </div>
+          </div>
         </div>
       )}
 
