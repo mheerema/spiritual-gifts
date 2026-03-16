@@ -177,6 +177,23 @@ export default function Home() {
             Glossary, Bibliography &amp; Theological Framework &rarr;
           </a>
         </div>
+
+        {/* Legal links */}
+        <div className="flex justify-center gap-3 pt-2">
+          <a
+            href="/terms"
+            className="text-xs text-stone-400 hover:text-stone-600 transition-colors"
+          >
+            Terms of Service
+          </a>
+          <span className="text-xs text-stone-300">&middot;</span>
+          <a
+            href="/privacy"
+            className="text-xs text-stone-400 hover:text-stone-600 transition-colors"
+          >
+            Privacy Policy
+          </a>
+        </div>
       </div>
     </main>
   );

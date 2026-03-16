@@ -734,7 +734,7 @@ export default function ResourcesPage() {
       )}
 
       {/* Footer note */}
-      <div className="mt-12 pt-6 border-t border-stone-200">
+      <div className="mt-12 pt-6 border-t border-stone-200 space-y-4">
         <p className="text-xs text-stone-400 text-center leading-relaxed">
           This assessment operates within a cessationist framework as articulated by
           Thomas Schreiner and Richard Gaffin, while affirming that open-but-cautious
@@ -743,6 +743,21 @@ export default function ResourcesPage() {
           Spirit in the life of the church, the sufficiency of Scripture, and the vital
           importance of spiritual gifts for the health of Christ&apos;s body.
         </p>
+        <div className="flex justify-center gap-3">
+          <Link
+            href="/terms"
+            className="text-xs text-stone-400 hover:text-stone-600 transition-colors"
+          >
+            Terms of Service
+          </Link>
+          <span className="text-xs text-stone-300">&middot;</span>
+          <Link
+            href="/privacy"
+            className="text-xs text-stone-400 hover:text-stone-600 transition-colors"
+          >
+            Privacy Policy
+          </Link>
+        </div>
       </div>
     </main>
   );
