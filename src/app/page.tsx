@@ -168,16 +168,6 @@ export default function Home() {
           church affirmation matter more than self-perception alone.
         </p>
 
-        {/* Resources link */}
-        <div className="text-center">
-          <a
-            href="/resources"
-            className="text-sm text-stone-500 hover:text-stone-700 transition-colors"
-          >
-            Glossary, Bibliography &amp; Theological Framework &rarr;
-          </a>
-        </div>
-
         {/* Legal links */}
         <div className="flex justify-center gap-3 pt-2">
           <a

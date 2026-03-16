@@ -11,13 +11,7 @@ export default function PrivacyPolicy() {
     <main className="max-w-2xl mx-auto px-4 py-12 sm:py-20">
       {/* Header */}
       <div className="text-center mb-8">
-        <Link
-          href="/"
-          className="text-sm text-stone-400 hover:text-stone-600 transition-colors"
-        >
-          &larr; Back to Assessment
-        </Link>
-        <h1 className="text-3xl sm:text-4xl font-bold text-stone-900 tracking-tight mt-4">
+        <h1 className="text-3xl sm:text-4xl font-bold text-stone-900 tracking-tight">
           Privacy Policy
         </h1>
         <p className="text-stone-500 mt-2 text-base">
