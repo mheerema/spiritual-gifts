@@ -259,6 +259,12 @@ export default function AssessmentPage() {
         </div>
 
         <div className="text-center">
+          <a href="/resources" className="text-sm text-stone-500 hover:text-stone-700 transition-colors">
+            Explore the glossary and theological framework →
+          </a>
+        </div>
+
+        <div className="text-center">
           <a
             href="/"
             className="text-sm text-stone-500 hover:text-stone-700 transition-colors"
