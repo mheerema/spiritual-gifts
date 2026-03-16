@@ -12,6 +12,10 @@ interface SessionRow {
 interface CategoryScore {
   category_id: string;
   public_name: string;
+  description: string;
+  strengths: string;
+  cautions: string;
+  ministry_fit: string;
   raw_score: number;
   question_count: number;
 }
@@ -83,13 +87,14 @@ export async function POST(
     // Calculate scores per category
     const scoresResult = await query<CategoryScore>(
       `SELECT sq.category_id, c.public_name,
+              c.description, c.strengths, c.cautions, c.ministry_fit,
               SUM(r.response_value)::INTEGER AS raw_score,
               COUNT(*)::INTEGER AS question_count
        FROM sg_session_questions sq
        JOIN sg_responses r ON r.session_id = sq.session_id AND r.question_id = sq.question_id
        JOIN sg_categories c ON c.id = sq.category_id
        WHERE sq.session_id = $1
-       GROUP BY sq.category_id, c.public_name
+       GROUP BY sq.category_id, c.public_name, c.description, c.strengths, c.cautions, c.ministry_fit
        ORDER BY SUM(r.response_value) DESC`,
       [sessionId]
     );
@@ -98,6 +103,10 @@ export async function POST(
     const rankedScores = scoresResult.rows.map((row, i) => ({
       category_id: row.category_id,
       public_name: row.public_name,
+      description: row.description,
+      strengths: row.strengths,
+      cautions: row.cautions,
+      ministry_fit: row.ministry_fit,
       raw_score: row.raw_score,
       average_score: parseFloat(
         (row.raw_score / row.question_count).toFixed(2)
@@ -152,6 +161,10 @@ export async function POST(
           raw_score: s.raw_score,
           average_score: s.average_score,
           rank: s.rank,
+          description: s.description,
+          strengths: s.strengths,
+          cautions: s.cautions,
+          ministry_fit: s.ministry_fit,
         })),
         primary_gifts: primaryGifts,
         session_id: sessionId,
