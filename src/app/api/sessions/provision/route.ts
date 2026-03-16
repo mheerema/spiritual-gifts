@@ -33,6 +33,59 @@ export async function POST(request: Request) {
       );
     }
 
+    // Validate callback URL: must be HTTPS and not a private/internal address
+    let parsedCallback: URL;
+    try {
+      parsedCallback = new URL(callback_url);
+    } catch {
+      return NextResponse.json(
+        { error: "Invalid callback_url" },
+        { status: 400 }
+      );
+    }
+    if (parsedCallback.protocol !== "https:") {
+      return NextResponse.json(
+        { error: "callback_url must use HTTPS" },
+        { status: 400 }
+      );
+    }
+    const cbHost = parsedCallback.hostname.toLowerCase();
+    if (
+      cbHost === "localhost" ||
+      cbHost.startsWith("127.") ||
+      cbHost.startsWith("10.") ||
+      cbHost.startsWith("192.168.") ||
+      cbHost.startsWith("169.254.") ||
+      cbHost === "[::1]" ||
+      cbHost.endsWith(".local") ||
+      cbHost.endsWith(".internal")
+    ) {
+      return NextResponse.json(
+        { error: "callback_url cannot point to a private address" },
+        { status: 400 }
+      );
+    }
+
+    // Validate input lengths
+    if (String(callback_token).length > 256 || String(external_id).length > 256) {
+      return NextResponse.json(
+        { error: "callback_token and external_id must be 256 characters or less" },
+        { status: 400 }
+      );
+    }
+    if (participant_name && String(participant_name).length > 500) {
+      return NextResponse.json(
+        { error: "participant_name too long" },
+        { status: 400 }
+      );
+    }
+    if (participant_email && String(participant_email).length > 320) {
+      return NextResponse.json(
+        { error: "participant_email too long" },
+        { status: 400 }
+      );
+    }
+
     // Select 10 random active questions per active category
     const questionsResult = await query<SessionQuestion>(
       `SELECT q.id AS question_id, q.category_id

@@ -1,6 +1,6 @@
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
-import { createHash, createHmac } from "crypto";
+import { createHash, createHmac, timingSafeEqual } from "crypto";
 
 const COOKIE_NAME = "admin_token";
 
@@ -28,12 +28,17 @@ export function verifyToken(token: string): boolean {
     if (!hash || !signature) return false;
 
     const expectedHash = createHash("sha256").update(password).digest("hex");
-    if (hash !== expectedHash) return false;
+    const hashBuf = Buffer.from(hash);
+    const expectedHashBuf = Buffer.from(expectedHash);
+    if (hashBuf.length !== expectedHashBuf.length || !timingSafeEqual(hashBuf, expectedHashBuf)) return false;
 
     const expectedSig = createHmac("sha256", password)
       .update(hash)
       .digest("hex");
-    return signature === expectedSig;
+    const sigBuf = Buffer.from(signature);
+    const expectedSigBuf = Buffer.from(expectedSig);
+    if (sigBuf.length !== expectedSigBuf.length || !timingSafeEqual(sigBuf, expectedSigBuf)) return false;
+    return true;
   } catch {
     return false;
   }

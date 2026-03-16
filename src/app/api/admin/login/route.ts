@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { timingSafeEqual } from "crypto";
 import { generateToken, verifyToken, COOKIE_NAME } from "@/lib/admin-auth";
 import { cookies } from "next/headers";
 
@@ -26,7 +27,10 @@ export async function POST(request: Request) {
       );
     }
 
-    if (password !== adminPassword) {
+    // Constant-time comparison to prevent timing attacks
+    const pwBuf = Buffer.from(String(password));
+    const adminBuf = Buffer.from(adminPassword);
+    if (pwBuf.length !== adminBuf.length || !timingSafeEqual(pwBuf, adminBuf)) {
       return NextResponse.json(
         { error: "Invalid password" },
         { status: 401 }

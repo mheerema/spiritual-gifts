@@ -171,13 +171,19 @@ export async function POST(
       };
 
       // Fire-and-forget: don't await, don't block on failure
+      const cbController = new AbortController();
+      const cbTimeout = setTimeout(() => cbController.abort(), 10000);
       fetch(session.callback_url, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(callbackPayload),
-      }).catch((err) => {
-        console.error("Trellis callback failed:", err);
-      });
+        signal: cbController.signal,
+      })
+        .then(() => clearTimeout(cbTimeout))
+        .catch((err) => {
+          clearTimeout(cbTimeout);
+          console.error("Trellis callback failed:", err);
+        });
     }
 
     return NextResponse.json({ success: true, sessionId });
