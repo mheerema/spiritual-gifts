@@ -2,7 +2,7 @@
  * Seed script for Spiritual Gifts Assessment
  *
  * Usage:
- *   npx ts-node --skip-project scripts/seed-spiritual-gifts.ts <org_id>
+ *   DATABASE_URL="..." npx ts-node --skip-project seed-data.ts
  *
  * Creates 8 categories and 192 questions (24 per category).
  * Questions are "veiled behavioral" — they describe tendencies without
@@ -12,7 +12,7 @@
 import { Pool } from "pg";
 
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL || "postgresql://neondb_owner:npg_8uqTsIFj0oYL@ep-fancy-math-ae50vbtr-pooler.c-2.us-east-2.aws.neon.tech/neondb?sslmode=require",
+  connectionString: process.env.DATABASE_URL,
 });
 
 interface Category {
@@ -309,39 +309,33 @@ const CATEGORIES: Category[] = [
   },
 ];
 
-async function seed(orgId: string) {
+async function seed() {
   const client = await pool.connect();
 
   try {
     await client.query("BEGIN");
 
-    // Check if categories already exist for this org
-    const existing = await client.query(
-      "SELECT COUNT(*) as cnt FROM sg_categories WHERE org_id = $1",
-      [orgId]
-    );
+    // Check if categories already exist
+    const existing = await client.query("SELECT COUNT(*) as cnt FROM sg_categories");
     if (parseInt(existing.rows[0].cnt) > 0) {
-      console.log("Categories already exist for this org. Skipping seed.");
+      console.log("Categories already exist. Skipping seed.");
       await client.query("ROLLBACK");
       return;
     }
 
     for (const cat of CATEGORIES) {
-      // Insert category
       const catResult = await client.query(
-        `INSERT INTO sg_categories (org_id, internal_name, public_name, description, strengths, cautions, ministry_fit, display_order)
-         VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+        `INSERT INTO sg_categories (internal_name, public_name, description, strengths, cautions, ministry_fit, display_order)
+         VALUES ($1, $2, $3, $4, $5, $6, $7)
          RETURNING id`,
-        [orgId, cat.internal_name, cat.public_name, cat.description, cat.strengths, cat.cautions, cat.ministry_fit, cat.display_order]
+        [cat.internal_name, cat.public_name, cat.description, cat.strengths, cat.cautions, cat.ministry_fit, cat.display_order]
       );
       const categoryId = catResult.rows[0].id;
 
-      // Insert questions
       for (const questionText of cat.questions) {
         await client.query(
-          `INSERT INTO sg_questions (org_id, category_id, question_text)
-           VALUES ($1, $2, $3)`,
-          [orgId, categoryId, questionText]
+          `INSERT INTO sg_questions (category_id, question_text) VALUES ($1, $2)`,
+          [categoryId, questionText]
         );
       }
 
@@ -358,12 +352,6 @@ async function seed(orgId: string) {
   }
 }
 
-const orgId = process.argv[2];
-if (!orgId) {
-  console.error("Usage: npx ts-node --skip-project scripts/seed-spiritual-gifts.ts <org_id>");
-  process.exit(1);
-}
-
-seed(orgId)
+seed()
   .then(() => { pool.end(); process.exit(0); })
   .catch((err) => { console.error(err); pool.end(); process.exit(1); });
