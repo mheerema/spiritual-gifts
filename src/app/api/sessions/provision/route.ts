@@ -109,8 +109,15 @@ export async function POST(request: Request) {
       values
     );
 
+    // Build absolute URL so external callers (e.g. Trellis) redirect correctly
+    const baseUrl =
+      process.env.NEXT_PUBLIC_BASE_URL ||
+      (process.env.VERCEL_PROJECT_PRODUCTION_URL
+        ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+        : "http://localhost:3000");
+
     return NextResponse.json({
-      session_url: `/assessment/${session.id}`,
+      session_url: `${baseUrl}/assessment/${session.id}`,
     });
   } catch (error) {
     console.error("POST /api/sessions/provision error:", error);
