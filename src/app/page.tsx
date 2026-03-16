@@ -39,11 +39,7 @@ export default function Home() {
   return (
     <main className="max-w-xl mx-auto px-4 py-12 sm:py-20">
       <div className="text-center mb-10">
-        <h1 className="text-3xl sm:text-4xl font-bold text-stone-900 tracking-tight">
-          Charismata
-        </h1>
-        <p className="text-stone-400 text-sm mt-1 tracking-wide uppercase">Spiritual Gifts Assessment</p>
-        <p className="text-stone-500 mt-3 text-base sm:text-lg">
+        <p className="text-stone-500 text-base sm:text-lg">
           Discover how God has equipped you for service in His church
         </p>
       </div>
