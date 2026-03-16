@@ -167,6 +167,16 @@ export default function Home() {
           This assessment is descriptive, not definitive. Spiritual maturity, character, and local
           church affirmation matter more than self-perception alone.
         </p>
+
+        {/* Resources link */}
+        <div className="text-center">
+          <a
+            href="/resources"
+            className="text-sm text-stone-500 hover:text-stone-700 transition-colors"
+          >
+            Glossary, Bibliography &amp; Theological Framework &rarr;
+          </a>
+        </div>
       </div>
     </main>
   );
