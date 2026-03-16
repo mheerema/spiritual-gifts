@@ -138,10 +138,23 @@ export async function PATCH(
   try {
     const { sessionId } = await params;
     const body = await request.json();
-    const { responses, current_page } = body as {
-      responses?: { question_id: string; response_value: number }[];
-      current_page?: number;
-    };
+
+    // Accept both camelCase (frontend) and snake_case
+    const rawResponses = body.responses;
+    const pageValue = body.currentPage ?? body.current_page;
+
+    // Normalize responses: frontend sends { [question_id]: value } map
+    // Also accept array format [{ question_id, response_value }]
+    let normalizedResponses: { question_id: string; response_value: number }[] = [];
+    if (rawResponses && typeof rawResponses === "object" && !Array.isArray(rawResponses)) {
+      // Map format from frontend: { "uuid": 4, "uuid2": 3, ... }
+      normalizedResponses = Object.entries(rawResponses).map(([qid, val]) => ({
+        question_id: qid,
+        response_value: val as number,
+      }));
+    } else if (Array.isArray(rawResponses)) {
+      normalizedResponses = rawResponses;
+    }
 
     // Verify session exists and is started
     const session = await queryOne<{ id: string; status: string }>(
@@ -164,9 +177,9 @@ export async function PATCH(
     }
 
     // Batch upsert responses
-    if (responses && responses.length > 0) {
+    if (normalizedResponses.length > 0) {
       // Validate response values
-      for (const r of responses) {
+      for (const r of normalizedResponses) {
         if (
           !r.question_id ||
           typeof r.response_value !== "number" ||
@@ -185,7 +198,7 @@ export async function PATCH(
 
       const values: unknown[] = [];
       const placeholders: string[] = [];
-      responses.forEach((r, i) => {
+      normalizedResponses.forEach((r, i) => {
         const offset = i * 3;
         placeholders.push(
           `($${offset + 1}, $${offset + 2}, $${offset + 3})`
@@ -203,10 +216,10 @@ export async function PATCH(
     }
 
     // Update current_page if provided
-    if (current_page !== undefined && typeof current_page === "number") {
+    if (pageValue !== undefined && typeof pageValue === "number") {
       await query(
         `UPDATE sg_sessions SET current_page = $1 WHERE id = $2`,
-        [current_page, sessionId]
+        [pageValue, sessionId]
       );
     }
 
